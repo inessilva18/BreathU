@@ -1,4 +1,5 @@
-streamlit==1.40.1
-pandas==2.2.3
-numpy==2.1.2
-streamlit-mic-recorder==0.0.3
+streamlit==1.36.0
+pandas==2.2.2
+numpy==1.26.4
+streamlit-mic-recorder==0.0.2
+
