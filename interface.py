@@ -3,7 +3,8 @@ import datetime
 import random
 import pandas as pd
 import numpy as np
-from streamlit_mic_recorder import mic_recorder
+from streamlit_audiorecorder import audiorecorder
+
 
 # =========================
 # Funções de processamento
@@ -93,22 +94,14 @@ elif menu == "Chat":
         st.session_state.historico.append(("Agente", resposta))
 
     st.markdown("---")
+#----Chat de voz-----
+   st.subheader("Chat por voz (beta)")
+audio = audiorecorder("Clique para gravar", "Gravação em curso...")
+if len(audio) > 0:
+    st.audio(audio.tobytes(), format="audio/wav")
+    st.success(" Áudio gravado com sucesso!")
 
-    # --- Chat baseado em voz ---
-    st.subheader(" Chat por voz (beta)")
-    try:
-        audio_bytes = mic_recorder()
-    except Exception:
-        st.error("Erro ao aceder ao microfone. Verifica as permissões.")
-        audio_bytes = None
-
-    if audio_bytes:
-        st.audio(audio_bytes, format='audio/wav')
-        st.success("🎧 Áudio gravado com sucesso!")
-        st.info("(Processamento de voz ainda em desenvolvimento)")
-
-    st.markdown("---")
-
+#--------------------------
     # Estado emocional
     forma_utilizador = escolher_forma_utilizador()
     if forma_utilizador:
